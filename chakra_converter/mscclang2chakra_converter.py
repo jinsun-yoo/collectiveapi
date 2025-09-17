@@ -310,6 +310,20 @@ class MSCCL2ChakraConverter:
                         if type(prev_node) is not MSCCLNopStep:
                             et_node.add_parent(prev_node)
         
+        # Hardcoded, specifically for the simple broadcast/reduce scenario.
+        if self.collective in ['broadcast', 'reduce']:
+            gpu_id = 0
+            for tb_id in node_map[gpu_id]:
+                if tb_id == 0:
+                    continue
+                for step_id, et_node in node_map[gpu_id][tb_id].items():
+                    step = step_map[gpu_id][tb_id][step_id]
+                    dep_node = node_map[gpu_id][tb_id -1][step_id]
+                    try:
+                        et_node.add_parent(dep_node)
+                    except Exception as e:
+                        print(e, f'{gpu_id}, {dep_tb_id}, {dep_tb_id}, {tb_id}, {step_id}')
+
         # For each ET Trace node, add the parent dependency information
         for gpu_id in node_map:
             output_filename = "%s.%s.et" % (self.output_filename, gpu_id)

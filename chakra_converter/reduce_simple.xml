@@ -1,0 +1,28 @@
+<algo name="reduce_simple" proto="Simple" nchannels="1" nchunksperloop="4" ngpus="4" coll="custom" inplace="0">
+  <gpu id="0" i_chunks="0" o_chunks="4" s_chunks="0">
+    <tb id="0" send="-1" recv="1" chan="0">
+      <step s="0" type="r" srcbuf="i" srcoff="0" dstbuf="o" dstoff="1" cnt="1" depid="-1" deps="-1" hasdep="0"/>
+    </tb>
+    <tb id="1" send="-1" recv="2" chan="0">
+      <step s="0" type="r" srcbuf="i" srcoff="0" dstbuf="o" dstoff="2" cnt="1" depid="-1" deps="-1" hasdep="0"/>
+    </tb>
+    <tb id="2" send="-1" recv="3" chan="0">
+      <step s="0" type="r" srcbuf="i" srcoff="0" dstbuf="o" dstoff="3" cnt="1" depid="-1" deps="-1" hasdep="0"/>
+    </tb>
+  </gpu>
+  <gpu id="1" i_chunks="1" o_chunks="0" s_chunks="0">
+    <tb id="0" send="0" recv="-1" chan="0">
+      <step s="0" type="s" srcbuf="i" srcoff="0" dstbuf="o" dstoff="1" cnt="1" depid="-1" deps="-1" hasdep="0"/>
+    </tb>
+  </gpu>
+  <gpu id="2" i_chunks="1" o_chunks="0" s_chunks="0">
+    <tb id="0" send="0" recv="-1" chan="0">
+      <step s="0" type="s" srcbuf="i" srcoff="0" dstbuf="o" dstoff="2" cnt="1" depid="-1" deps="-1" hasdep="0"/>
+    </tb>
+  </gpu>
+  <gpu id="3" i_chunks="1" o_chunks="0" s_chunks="0">
+    <tb id="0" send="0" recv="-1" chan="0">
+      <step s="0" type="s" srcbuf="i" srcoff="0" dstbuf="o" dstoff="3" cnt="1" depid="-1" deps="-1" hasdep="0"/>
+    </tb>
+  </gpu>
+</algo>
