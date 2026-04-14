@@ -43,16 +43,16 @@ python3 -m utils.et_generator.et_generator --num_npus 64 --num_dims 1 --default_
 
 ## Generating Collective Algorithm ET
 ```
-cd ../../../../msccl-tools
-python3 allreduce_a100_ring.py 64 1 1 > demo_allreduce.xml
+cd msccl-tools
+pip install -r requirements.txt
 
-cd ../chakra
-python3 -m et_converter.et_converter \
-        --input_type        msccl \
-        --input_filename    ../msccl-tools/demo_allreduce.xml \
-        --output_filename   ../msccl-tools/allreduce_ring_mscclang \
-        --num_dims          1 \
-        --coll_size         16384'
+cd ../
+# Run the command below, or just use the file already prepared.
+python3 msccl-tools/examples/mscclang/allreduce_a100_ring.py 64 1 1 > demo_allreduce.xml
+
+python3 chakra_converter/et_converter.py \
+        --input_filename    ./msccl-tools/demo_allreduce.xml \
+        --output_filename   ./msccl-tools/allreduce_ring_mscclang \
 ```
 
 ## Running the Simulation in ASTRA-sim
