@@ -242,7 +242,7 @@ class MSCCL2ChakraConverter:
         self.input_filename = input_filename
         self.output_filename = output_filename
         self.logger = logger
-        self.next_node_id = 0
+        self.next_node_id = 1
 
 
     # Creates the global metadata info that is added to the start of all ET files.
@@ -269,7 +269,7 @@ class MSCCL2ChakraConverter:
     # There will be one ET trace file for each NPU. 
     def reset_node_id(
             self
-    ): self.next_node_id = 0
+    ): self.next_node_id = 1
 
     # Add 'parent_node' as the parent to 'child_node'.
     # Note that parent_node and child_node has to be within the same ET trace file.
